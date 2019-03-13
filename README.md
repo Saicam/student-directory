@@ -4,6 +4,6 @@ The student directory allows you to manage the list of all students enrolled at 
 
 ## How to use ##
 
-'''shell
+```shell
 ruby directory.rb
-'''
+```
