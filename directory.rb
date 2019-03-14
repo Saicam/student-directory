@@ -17,12 +17,12 @@ def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
 
-  name = gets.chomp
+  name = STDIN.gets.chomp
 
   while !name.empty? do
     @students << {name: name, cohort: :march}
     puts "Now we have #{@students.count} students."
-    name = gets.chomp
+    name = STDIN.gets.chomp
   end
 end
 
@@ -60,7 +60,7 @@ end
 def interactive_menu
   loop do
     print_menu
-    process(gets.chomp)
+    process(STDIN.gets.chomp)
   end
 end
 
@@ -84,5 +84,17 @@ def load_students(file_name = "students.csv")
   file.close
 end
 
+def try_load_students
+  file_name = ARGV.first
+  return if file_name.nil?
+  if File.exists?(file_name)
+    load_students(file_name)
+    puts "Loaded #{@students.count} studends from #{file_name}"
+  else
+    puts "Sorry, the file #{file_name} doesn't exists"
+    exit
+  end
+end
 
+try_load_students
 interactive_menu
