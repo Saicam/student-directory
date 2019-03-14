@@ -14,7 +14,7 @@ def print_header
 end
 
 def print_names(students)
-  students.each { |student| puts "#{student[:name]} (#{student[:cohort]} cohort)" }
+  students.each_with_index { |student, index| puts "#{index +1}: #{student[:name]} (#{student[:cohort]} cohort)" }
 end
 
 def print_footer(names)
@@ -38,7 +38,31 @@ def input_students
 
 end
 
-students += input_students
-print_header
-print_names(students)
-print_footer(students)
+def interactive_menu
+  students = []
+
+  loop do
+    puts "1. Input the students"
+    puts "2. Show the students"
+    puts "9. Exit"
+
+    selection = gets.chomp
+
+    case selection
+    when "1"
+      students += input_students
+    when "2"
+      print_header
+      print_names(students)
+      print_footer(students)
+    when "9"
+      exit
+    else
+      puts "That option doesn't exist. Try again."
+    end
+
+  end
+
+end
+
+interactive_menu
