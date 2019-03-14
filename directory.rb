@@ -1,5 +1,3 @@
-student_count = 7
-
 students = [
   "Akuba",
   "Philip Board",
@@ -9,6 +7,7 @@ students = [
   "Deanna",
   "Jose"
 ]
-
+puts "Students of the Academty"
+puts "-------"
 students.each { |name| puts name }
-puts "Overall, we have #{student_count} great students."
+puts "Overall, we have #{students.count} great students."
