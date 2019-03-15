@@ -6,7 +6,6 @@ The student directory allows you to manage the list of all students enrolled at 
 
 - [How to use](#how-to-use)
 - [Important updates](#important-updates)
-- [skills](#skills)
 - [Excersises](#excersises)
 
 ## How to use
@@ -17,7 +16,7 @@ The program can be called from command line with or without a file in csv format
 ruby directory.rb [file.csv]
 ```
 
-A menu will be promted with these options
+A menu will be prompted with these options
 
 ```shell
 1. Input the students.
@@ -35,6 +34,10 @@ Added method to the code in this [commit.](d9b4cae6b367188758d2d3366b5e59a921127
 ## Excercises
 
 - [x] Typos in plain [text.](./example.rb)
-- [ ] Algo 2
-- [ ] Algo 3
-- [ ] Algomas
+- [ ] Adding cohort by input.
+- [ ] Print students organised by cohort.
+- [ ] Research and use `center()`.
+- [ ] Use singular or plural when needed.
+- [ ] Adding students in two places. **DRY** it
+- [ ] Use CSV Library.
+- [ ] Program which reads its own code.
