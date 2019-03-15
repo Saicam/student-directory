@@ -1,3 +1,5 @@
+require 'csv'
+
 MENU_WIDTH = 50
 @students = []
 
@@ -68,6 +70,7 @@ def interactive_menu
 end
 
 def save_students
+=begin
   file = File.open("students.csv", "w")
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
@@ -76,15 +79,31 @@ def save_students
   end
 
   file.close
+=end
+  CSV.open("students.csv", "w") do |csv_file|
+    csv_file << @students[0].keys
+    @students.each do |student|
+      student_data = [student[:name], student[:cohort]]
+      csv_file.puts student_data
+    end
+  end
+
 end
 
 def load_students(file_name = "students.csv")
+=begin
   file = File.open(file_name, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(",")
     @students << {name: name, cohort: cohort.to_sym}
   end
   file.close
+=end
+  CSV.foreach(file_name, headers:true).each do |student|
+    puts student.inspect
+    @students << {name: student["name"], cohort: student["cohort"].to_sym}
+  end
+
 end
 
 def try_load_students
