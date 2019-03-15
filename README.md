@@ -36,7 +36,7 @@ Added method to the code in this [commit.](d9b4cae6b367188758d2d3366b5e59a921127
 - [x] Typos in plain [text.](./example.rb)
 - [ ] Adding cohort by input.
 - [ ] Print students organised by cohort.
-- [ ] Research and use `center()`.
+- [x] Research and use `center()`.
 - [ ] Use singular or plural when needed.
 - [ ] Adding students in two places. **DRY** it
 - [ ] Use CSV Library.

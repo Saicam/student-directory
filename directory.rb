@@ -1,3 +1,4 @@
+MENU_WIDTH = 50
 @students = []
 
 def print_header
@@ -27,11 +28,13 @@ def input_students
 end
 
 def print_menu
-  puts "1. Input the students."
-  puts "2. Show the students."
-  puts "3. Save the students list to file."
-  puts "4. Load list of students from file."
-  puts "9. Exit."
+  puts "".center(MENU_WIDTH, "*")
+  puts "1. Input the students.".center(MENU_WIDTH)
+  puts "2. Show the students.".center(MENU_WIDTH)
+  puts "3. Save the students list to file.".center(MENU_WIDTH)
+  puts "4. Load list of students from file.".center(MENU_WIDTH)
+  puts "9. Exit.".center(MENU_WIDTH)
+  puts "".center(MENU_WIDTH, "*")
 end
 
 def show_students
