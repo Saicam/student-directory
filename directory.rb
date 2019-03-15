@@ -2,6 +2,7 @@ require 'csv'
 
 MENU_WIDTH = 50
 @students = []
+@s2 = CSV::Table.new([])
 
 def print_header
   puts "Students of the Academty"
@@ -9,11 +10,11 @@ def print_header
 end
 
 def print_students_list
-  @students.each_with_index { |student, index| puts "#{index +1}: #{student[:name]} (#{student[:cohort]} cohort)" }
+  @s2.each_with_index { |row, index| puts "#{index+1}: #{row["name"]} (#{row["cohort"]} cohort)" }
 end
 
 def print_footer
-  puts "Overall, we have #{@students.count} great students."
+  puts "Overall, we have #{@s2.size} great students."
 end
 
 def input_students
@@ -23,8 +24,8 @@ def input_students
   name = STDIN.gets.chomp
 
   while !name.empty? do
-    @students << {name: name, cohort: :march}
-    puts "Now we have #{@students.count} students."
+    @s2 << [name, :march]
+    puts "Now we have #{@s2.size} students."
     name = STDIN.gets.chomp
   end
 end
@@ -99,6 +100,7 @@ def load_students(file_name = "students.csv")
   end
   file.close
 =end
+  @s2 = CSV.read(file_name,headers:true)
   CSV.foreach(file_name, headers:true).each do |student|
     puts student.inspect
     @students << {name: student["name"], cohort: student["cohort"].to_sym}
