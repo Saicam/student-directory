@@ -1,7 +1,6 @@
 require 'csv'
 
 MENU_WIDTH = 50
-@students = []
 @s2 = CSV::Table.new([])
 
 def print_header
@@ -18,15 +17,16 @@ def print_footer
 end
 
 def input_students
-  puts "Please enter the names of the students"
-  puts "To finish, just hit return twice"
-
-  name = STDIN.gets.chomp
-
+  name = " "
   while !name.empty? do
-    @s2 << [name, :march]
-    puts "Now we have #{@s2.size} students."
+    puts "Please enter the name of the student, just hit return twice"
     name = STDIN.gets.chomp
+    break if name.empty?
+    puts "Please enter the student's cohort, to use default cohort hit return"
+    cohort = STDIN.gets.chomp
+    cohort = "march" if cohort.empty?
+    @s2 << [name, cohort.downcase.to_sym]
+    puts "Now we have #{@s2.size} students."
   end
 end
 
@@ -71,41 +71,11 @@ def interactive_menu
 end
 
 def save_students
-=begin
-  file = File.open("students.csv", "w")
-  @students.each do |student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
-  end
-
-  file.close
-=end
-  CSV.open("students.csv", "w") do |csv_file|
-    csv_file << @students[0].keys
-    @students.each do |student|
-      student_data = [student[:name], student[:cohort]]
-      csv_file.puts student_data
-    end
-  end
-
+  File.open("students.csv", "w") { |csv_file|  csv_file.puts @s2.to_csv }
 end
 
 def load_students(file_name = "students.csv")
-=begin
-  file = File.open(file_name, "r")
-  file.readlines.each do |line|
-    name, cohort = line.chomp.split(",")
-    @students << {name: name, cohort: cohort.to_sym}
-  end
-  file.close
-=end
   @s2 = CSV.read(file_name,headers:true)
-  CSV.foreach(file_name, headers:true).each do |student|
-    puts student.inspect
-    @students << {name: student["name"], cohort: student["cohort"].to_sym}
-  end
-
 end
 
 def try_load_students
@@ -113,7 +83,7 @@ def try_load_students
   return if file_name.nil?
   if File.exists?(file_name)
     load_students(file_name)
-    puts "Loaded #{@students.count} studends from #{file_name}"
+    puts "Loaded #{@s2.count} studends from #{file_name}"
   else
     puts "Sorry, the file #{file_name} doesn't exists"
     exit
