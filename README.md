@@ -29,14 +29,12 @@ A menu will be promted with these options
 
 ## Important updates
 
-Algo [jum](http://google.com)
-
-[#4](https://github.com/Saicam/student-directory/tree/036d07616018c308177bd67aa30c797a71b2ef7d)
+Added method to the code in this [commit.](d9b4cae6b367188758d2d3366b5e59a92112793a)
 
 
 ## Excercises
 
-- [ ] Typos in plain text. ()
+- [x] Typos in plain [text.](./example.rb)
 - [ ] Algo 2
 - [ ] Algo 3
 - [ ] Algomas
