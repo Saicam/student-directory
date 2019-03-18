@@ -19,16 +19,25 @@ end
 def input_students
   name = " "
   while !name.empty? do
-    puts "Please enter the name of the student, just hit return twice"
-    name = STDIN.gets.chomp
+    name = input_name
     break if name.empty?
-    puts "Please enter the student's cohort, to use default cohort hit return"
-    cohort = STDIN.gets.chomp
+    cohort = input_cohort
     cohort = "march" if cohort.empty?
     @s2 << [name, cohort.downcase.to_sym]
     puts "Now we have #{@s2.size} students."
   end
 end
+
+def input_name
+  puts "Please enter the name of the student, just hit return twice"
+  name = STDIN.gets.chomp.downcase.to_sym
+end
+
+def input_cohort
+  puts "Please enter the student's cohort, to use default cohort hit return"
+  cohort = STDIN.gets.chomp
+end
+
 
 def print_menu
   puts "".center(MENU_WIDTH, "*")
